@@ -1,8 +1,15 @@
 const secretMd = {
-    secretToReq: () => ( req, res, next ) => {
-        console.log('inside middleware')
-        req.secret = 'we rule the dev world'
-        next()
+    secretToReq: ( secret, options ) => {
+
+        if ( options.upper ) {
+            secret = secret.toUpperCase()
+        }
+
+        return ( req, res, next ) => {
+            console.log( 'inside middleware' )
+            req.secret = secret
+            next()
+        }
     }
 }
 

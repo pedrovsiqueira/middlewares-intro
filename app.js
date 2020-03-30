@@ -9,8 +9,11 @@ const secretMd = require('./middlewares/secretMiddleware')
 //     next()
 // })
 
-app.use(secretMd.secretToReq())
+app.use(secretMd.secretToReq('flower power', {
+    upper: true
+}))
 
 app.get('/', (req, res) => res.send(req.secret))
 
 app.listen(3000, () => console.log('app is running on por 3000'))
+
